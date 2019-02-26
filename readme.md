@@ -34,6 +34,8 @@ $mold = new Mold('Hello World!');
 echo $mold->upperacase()->last(3);
 ```
 
+*There is a more advanced example in `index-all.php` where it includes plugins as well.*
+
 ## Write a plugin
 
 To create the plugin that is used in the example above, you can do it like below.
@@ -53,9 +55,29 @@ trait MoldPluginHello {
 ```
 
 - It is a `trait` not a `class`. Be sure to get the first line right.
-- You can use any name of the class but I recommend `MoldPlugin` as a prefix.
 - Use `$this->var` to get and set the current variable.
 - Always `return $this` (not `$this->var`). Else the chain will break.
+
+## Built in plugins
+
+There are some [built in plugins](plugins.md) that you can use.
+
+## Bundles
+
+In case the chain is being very long and you use the same kind of chain in different places, you can create what I call "bundles". It works just like any other plugin. The difference is that I use chains inside a plugin function.
+
+```php
+<?php
+trait MoldPluginBundles {
+  function myBundle($var1, $var2) {
+    $this->var($var1, $var2)->trim('', -1)->unique()->format(0, ',', '.')->implode(' - ')->suffix('kr');
+    return $this;
+  }
+}
+
+$mold = new Mold();
+echo $mold->myBundle(1000, 2000);
+```
 
 ## Requirements
 

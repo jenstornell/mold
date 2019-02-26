@@ -1,3 +1,10 @@
+# 1.1
+
+- Added plugins `array`, `string` and `generic`.
+- Added tests.
+- Added `index-all.php` for a more advanced example.
+- Added "bundles" into the docs.
+
 # 1.0
 
 - Initial release

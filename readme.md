@@ -1,6 +1,6 @@
 # Mold
 
-*Version 1.1* [Changelog](changelog.md)
+*Version 1.2* [Changelog](changelog.md)
 
 A PHP library to chain methods like `$mold->upperacase()->last(3)`.
 

@@ -1,3 +1,8 @@
+# 1.2
+
+- Added new methods `s()`, `explode()`, `prefix()`, `email()`, `link()`, `a()`.
+- Added tests for above methods.
+
 # 1.1
 
 - Added plugins `array`, `string` and `generic`.

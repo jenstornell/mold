@@ -4,6 +4,10 @@ trait MoldPluginArray {
     return (array)$this->var;
   }
 
+  function a() {
+    return (array)$this->var;
+  }
+
   function aFormat($decimals = 0, $dec_point = '.', $thousands_sep = ',') {
     $collection = [];
     foreach($this->var as $item) {

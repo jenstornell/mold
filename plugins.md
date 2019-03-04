@@ -58,7 +58,7 @@ Array
 
 ```php
 $m = new Mold();
-$string = $m->var(1000)->sFormat(2, ',', '.')->suffix('USD');
+$string = $m->var(1000)->sFormat(2, ',', '.')->suffix(' USD');
 echo $string;
 ```
 

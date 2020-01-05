@@ -1,12 +1,11 @@
 <?php
-trait MoldPluginHello {
-  function uppercase() {
-    $this->var = strtoupper($this->var);
-    return $this;
-  }
+namespace Mold;
 
-  function last($length) {
-    $this->var = substr($this->var, -$length);
-    return $this;
-  }
+function uppercase($obj) {
+  return strtoupper($obj->collection);
+}
+
+function last($obj, $args) {
+  $length = $args[0];
+  return substr($obj->collection, -$length);
 }

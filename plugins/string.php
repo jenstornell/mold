@@ -1,45 +1,26 @@
 <?php
-trait MoldPluginString {
-  function string() {
-    return (string)$this->var;
-  }
+namespace Mold;
 
-  function s() {
-    return (string)$this->var;
-  }
+function trim($obj, $args) {
+  return \trim($obj->collection, $args[0]);
+}
 
-  function email() {
-    $email = '';
-    for($i=0; $i < strlen($this->var); $i++){
-        $email .= "&#" . ord($this->var[$i]) . ";";
-    }
-    $this->var = sprintf('<a href="mailto:%s">%s</a>', $email, $email);
-    return $this;
-  }
+function format($obj, $args) {
+  return number_format($obj->collection, ...$args[0]);
+}
 
-  function explode($delimiter = '') {
-    $this->var = explode($delimiter, $this->var);
-    return $this;
-  }
+function explode($obj, $args) {
+  return \explode($args[0], $obj->collection);
+}
 
-  function link($label = null) {
-    $label = ($label) ? $label : $this->var;
-    $this->var = sprintf('<a href="%s">%s</a>', $this->var, $label);
-    return $this;
-  }
+function prefix($obj, $args) {
+  return $obj->collection != '' ? $args[0] . '' . $obj->collection : '';
+}
 
-  function prefix($prefix = '') {
-    $this->var = ($this->var != '') ? $prefix . '' . $this->var : '';
-    return $this;
-  }
+function suffix($obj, $args) {
+  return $obj->collection .= $obj->collection != '' ? $args[0] : '';
+}
 
-  function sFormat($decimals = 0, $dec_point = '.', $thousands_sep = ',') {
-    $this->var = number_format($this->var, $decimals, $dec_point, $thousands_sep);
-    return $this;
-  }
-
-  function suffix($suffix = '') {
-    $this->var .= ($this->var != '') ? $suffix : '';
-    return $this;
-  }
+function transform($obj, $args) {
+  return \strtr($obj->collection, ...$args);
 }

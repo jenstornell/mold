@@ -1,3 +1,7 @@
+# 2.0
+
+- Complete rewrite
+
 # 1.2
 
 - Added new methods `s()`, `explode()`, `prefix()`, `email()`, `link()`, `a()`.

@@ -1,6 +1,6 @@
 # Mold
 
-*Version 1.2* [Changelog](changelog.md)
+_Version 2.0_ [Changelog](changelog.md)
 
 A PHP library to chain methods like `$mold->upperacase()->last(3)`.
 
@@ -22,62 +22,43 @@ include __DIR__ . '/mold.php';
 // Include plugins
 include __DIR__ . '/plugins/hello.php';
 
-// Create Mold class and use the plugins you need
-class Mold extends MoldBase {
-  use MoldPluginHello;
-}
-
-// Create a new instance with a variable to start with
-$mold = new Mold('Hello World!');
+// Create a new instance
+$mold = new Mold();
 
 // Output the result on the screen, in this case "LD!"
-echo $mold->upperacase()->last(3);
+echo $mold->set('Hello World!')->upperacase()->last(3);
 ```
-
-*There is a more advanced example in `index-all.php` where it includes plugins as well.*
 
 ## Write a plugin
 
 To create the plugin that is used in the example above, you can do it like below.
 
 ```php
-trait MoldPluginHello {
-  function uppercase() {
-    $this->var = strtoupper($this->var);
-    return $this;
-  }
+<?php
+namespace Mold;
 
-  function last($length) {
-    $this->var = substr($this->var, -$length);
-    return $this;
-  }
+function trim($obj, $args) {
+  return \trim($obj->collection, $args[0]);
 }
 ```
 
-- It is a `trait` not a `class`. Be sure to get the first line right.
-- Use `$this->var` to get and set the current variable.
-- Always `return $this` (not `$this->var`). Else the chain will break.
+- You need the namespace `Mold`.
+- You need to include it as an internal file.
+
+With the plugin above you can do something like below, which will output `Hello World`.
+
+```php
+include __DIR__ . '/mold.php';
+include __DIR__ . '/plugins/my-plugin.php';
+
+$mold = new Mold();
+
+echo $mold->set('Hello World!')->trim('!');
+```
 
 ## Built in plugins
 
 There are some [built in plugins](plugins.md) that you can use.
-
-## Bundles
-
-In case the chain is being very long and you use the same kind of chain in different places, you can create what I call "bundles". It works just like any other plugin. The difference is that I use chains inside a plugin function.
-
-```php
-<?php
-trait MoldPluginBundles {
-  function myBundle($var1, $var2) {
-    $this->var($var1, $var2)->trim('', -1)->unique()->format(0, ',', '.')->implode(' - ')->suffix('kr');
-    return $this;
-  }
-}
-
-$mold = new Mold();
-echo $mold->myBundle(1000, 2000);
-```
 
 ## Requirements
 

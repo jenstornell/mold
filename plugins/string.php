@@ -1,26 +1,26 @@
 <?php
 namespace Mold;
 
-function trim($obj, $args) {
-  return \trim($obj->collection, $args[0]);
+function trim($obj) {
+  return \trim($obj->collection, $obj->args[0]);
 }
 
-function format($obj, $args) {
-  return number_format($obj->collection, ...$args[0]);
+function format($obj) {
+  return number_format($obj->collection, ...$obj->args[0]);
 }
 
-function explode($obj, $args) {
-  return \explode($args[0], $obj->collection);
+function explode($obj) {
+  return \explode($obj->args[0], $obj->collection);
 }
 
-function prefix($obj, $args) {
-  return $obj->collection != '' ? $args[0] . '' . $obj->collection : '';
+function prefix($obj) {
+  return $obj->collection != '' ? $obj->args[0] . '' . $obj->collection : '';
 }
 
-function suffix($obj, $args) {
-  return $obj->collection .= $obj->collection != '' ? $args[0] : '';
+function suffix($obj) {
+  return $obj->collection .= $obj->collection != '' ? $obj->args[0] : '';
 }
 
-function transform($obj, $args) {
-  return \strtr($obj->collection, ...$args);
+function transform($obj) {
+  return \strtr($obj->collection, ...$obj->args);
 }

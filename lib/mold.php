@@ -7,10 +7,13 @@ class Mold {
 
   public function __call($name, $args = null) {
     $function = 'Mold\\' . $name;
+
     if(!function_exists($function)) {
       die('Method ' . $name . ' does not exist');
     }
-    $this->collection = $function($this, $args);
+
+    $this->args = $args;
+    $this->collection = $function($this);
     return $this;
   }
 

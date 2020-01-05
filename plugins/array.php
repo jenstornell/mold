@@ -1,18 +1,18 @@
 <?php
 namespace Mold;
 
-function array_format($obj, $args) {
+function array_format($obj) {
   $collection = [];
   foreach($obj->collection as $i => $number) {
-    $collection[] = number_format($number, ...$args[0][$i]);
+    $collection[] = number_format($number, ...$obj->args[0][$i]);
   }
   return $collection;
 }
 
-function array_trim($obj, $args) {
+function array_trim($obj) {
   $collection = [];
   foreach($obj->collection as $item) {
-    foreach($args as $arg) {
+    foreach($obj->args as $arg) {
       if(in_array($item, $arg, true)) continue;      
       $collection[] = $item;
     }
@@ -20,8 +20,8 @@ function array_trim($obj, $args) {
   return $collection;
 }
 
-function implode($obj, $args) {
-  $glue = $args[0];
+function implode($obj) {
+  $glue = $obj->args[0];
   return \implode($obj->collection, $glue);
 }
 

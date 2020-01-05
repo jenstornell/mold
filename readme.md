@@ -37,8 +37,8 @@ To create the plugin that is used in the example above, you can do it like below
 <?php
 namespace Mold;
 
-function trim($obj, $args) {
-  return \trim($obj->collection, $args[0]);
+function trim($obj) {
+  return \trim($obj->collection, $obj->args[0]);
 }
 ```
 
@@ -55,10 +55,6 @@ $mold = new Mold();
 
 echo $mold->set('Hello World!')->trim('!');
 ```
-
-## Built in plugins
-
-There are some [built in plugins](plugins.md) that you can use.
 
 ## Requirements
 

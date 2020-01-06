@@ -2,10 +2,10 @@
 namespace Mold;
 
 function uppercase($obj) {
-  return strtoupper($obj->collection);
+  return strtoupper($obj->data);
 }
 
 function last($obj) {
   $length = $obj->args[0];
-  return substr($obj->collection, -$length);
+  return substr($obj->data, -$length);
 }

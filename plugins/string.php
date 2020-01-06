@@ -2,25 +2,25 @@
 namespace Mold;
 
 function trim($obj) {
-  return \trim($obj->collection, $obj->args[0]);
+  return \trim($obj->data, $obj->args[0]);
 }
 
 function format($obj) {
-  return number_format($obj->collection, ...$obj->args[0]);
+  return number_format($obj->data, ...$obj->args[0]);
 }
 
 function explode($obj) {
-  return \explode($obj->args[0], $obj->collection);
+  return \explode($obj->args[0], $obj->data);
 }
 
 function prefix($obj) {
-  return $obj->collection != '' ? $obj->args[0] . '' . $obj->collection : '';
+  return $obj->data != '' ? $obj->args[0] . '' . $obj->data : '';
 }
 
 function suffix($obj) {
-  return $obj->collection .= $obj->collection != '' ? $obj->args[0] : '';
+  return $obj->data .= $obj->data != '' ? $obj->args[0] : '';
 }
 
 function transform($obj) {
-  return \strtr($obj->collection, ...$obj->args);
+  return \strtr($obj->data, ...$obj->args);
 }

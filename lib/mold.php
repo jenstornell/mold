@@ -1,7 +1,7 @@
 <?php
 class Mold {
-  public function set($collection) {
-    $this->collection = $collection;
+  public function set($data) {
+    $this->data = $data;
     return $this;
   }
 
@@ -13,27 +13,27 @@ class Mold {
     }
 
     $this->args = $args;
-    $this->collection = $function($this);
+    $this->data = $function($this);
     return $this;
   }
 
   public function array() {
-    return (array)$this->collection;
+    return (array)$this->data;
   }
 
   public function string() {
-    return (string)$this->collection;
+    return (string)$this->data;
   }
 
   public function int() {
-    return (int)$this->collection;
+    return (int)$this->data;
   }
 
   public function float() {
-    return (float)$this->collection;
+    return (float)$this->data;
   }
 
   public function __toString() {
-    return $this->collection;
+    return $this->data;
   }
 }

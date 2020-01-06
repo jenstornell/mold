@@ -2,29 +2,29 @@
 namespace Mold;
 
 function array_format($obj) {
-  $collection = [];
-  foreach($obj->collection as $i => $number) {
-    $collection[] = number_format($number, ...$obj->args[0][$i]);
+  $data = [];
+  foreach($obj->data as $i => $number) {
+    $data[] = number_format($number, ...$obj->args[0][$i]);
   }
-  return $collection;
+  return $data;
 }
 
 function array_trim($obj) {
-  $collection = [];
-  foreach($obj->collection as $item) {
+  $data = [];
+  foreach($obj->data as $item) {
     foreach($obj->args as $arg) {
       if(in_array($item, $arg, true)) continue;      
-      $collection[] = $item;
+      $data[] = $item;
     }
   }
-  return $collection;
+  return $data;
 }
 
 function implode($obj) {
   $glue = $obj->args[0];
-  return \implode($obj->collection, $glue);
+  return \implode($obj->data, $glue);
 }
 
 function unique($obj) {
-  return array_unique($obj->collection);
+  return array_unique($obj->data);
 }
